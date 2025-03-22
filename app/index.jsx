@@ -1,44 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { GotiHome } from "./GotiHome";
 import GotiPath from "./Gotipath";
 import { Dice } from "./Dice";
+import { AppContext } from "@/context/AppContext";
 
 const LudoGame = () => {
-  const [players, setPlayers] = useState({
-    red: [0, 0, 0, 0],
-    blue: [0, 0, 0, 0],
-    green: [0, 0, 0, 0],
-    yellow: [0, 0, 0, 0],
-  });
-  const [currentTurn, setCurrentTurn] = useState("red");
-  
-
-  const movePiece = (color, pieceIndex) => {
-    setPlayers((prevPlayers) => {
-      const newPositions = { ...prevPlayers };
-      newPositions[color][pieceIndex] += gotiValue;
-      return newPositions;
-    });
-    nextTurn();
-  };
-
-  const nextTurn = () => {
-    const colors = ["red", "blue", "green", "yellow"];
-    const nextIndex = (colors.indexOf(currentTurn) + 1) % colors.length;
-    setCurrentTurn(colors[nextIndex]);
-  };
-
+  const { value, setValue } = useContext(AppContext);
 
   return (
     <View style={styles.container}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         <View style={styles.gotiHomeWrapper}>
           <GotiHome
-            players={players}
-            movePiece={movePiece}
-            currentTurn={currentTurn}
-            gotiValue={gotiValue}
             color="red"
           />
         </View>
@@ -49,10 +23,6 @@ const LudoGame = () => {
 
         <View style={styles.gotiHomeWrapper}>
           <GotiHome
-            players={players}
-            movePiece={movePiece}
-            currentTurn={currentTurn}
-            gotiValue={gotiValue}
             color="green"
           />
         </View>
@@ -77,10 +47,6 @@ const LudoGame = () => {
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         <View style={styles.gotiHomeWrapper}>
           <GotiHome
-            players={players}
-            movePiece={movePiece}
-            currentTurn={currentTurn}
-            gotiValue={gotiValue}
             color="orange"
           />
         </View>
@@ -91,10 +57,6 @@ const LudoGame = () => {
 
         <View style={styles.gotiHomeWrapper}>
           <GotiHome
-            players={players}
-            movePiece={movePiece}
-            currentTurn={currentTurn}
-            gotiValue={gotiValue}
             color="blue"
           />
         </View>

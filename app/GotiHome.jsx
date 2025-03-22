@@ -2,11 +2,11 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Goti } from "./Goti";
 
-export const GotiHome = ({players, movePiece, gotiValue, currentTurn, color}) => {
+export const GotiHome = ({color}) => {
     return (
         <View style={styles.home}>
             <View style={styles.grid}>
-                {[1, 2, 3, 4].map((value) => <Goti key={value} color={color} value={value} /> )}
+                {[1, 2, 3, 4].map((value) => <Goti key={value} color={color} gotiValue={value} /> )}
             </View>
         </View>
     );

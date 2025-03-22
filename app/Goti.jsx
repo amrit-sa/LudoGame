@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-export const Goti = ({color, value}) => {
+export const Goti = ({color, gotiValue}) => {
     return (
         <View style={styles.corner}>
             <TouchableOpacity
@@ -10,7 +10,7 @@ export const Goti = ({color, value}) => {
                 // }}
                 style={[styles.piece, { backgroundColor: color }]}
             >
-                <Text style={styles.pieceText}>{value}</Text>
+                <Text style={styles.pieceText}>{gotiValue}</Text>
             </TouchableOpacity>
         </View>
     );
