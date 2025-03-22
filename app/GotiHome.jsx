@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Goti } from "./Goti";
 
-export const DiceHome = ({players, movePiece, diceValue, currentTurn, color}) => {
+export const GotiHome = ({players, movePiece, gotiValue, currentTurn, color}) => {
     return (
         <View style={styles.home}>
             <View style={styles.grid}>

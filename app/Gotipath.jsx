@@ -1,22 +1,8 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-const DicePath1 = () => {
-    const renderBoxes = () => {
-        let boxes = [];
-        for (let i = 0; i < 18; i++) {
-            boxes.push(
-                <View key={i} style={styles.box} />
-            );
-        }
-        return boxes;
-    };
 
-    return <View style={styles.container}>{renderBoxes()}</View>;
-};
-
-
-const DicePath = ({ position }) => {
+const GotiPath = ({ position }) => {
     const renderBoxes = () => {
         let boxes = [];
         for (let i = 0; i < 6; i++) {
@@ -193,4 +179,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DicePath;
+export default GotiPath;

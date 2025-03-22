@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { DiceHome } from "./DiceHome";
-import DicePath from "./Dicepath";
+import { GotiHome } from "./GotiHome";
+import GotiPath from "./Gotipath";
+import { Dice } from "./Dice";
 
 const LudoGame = () => {
   const [players, setPlayers] = useState({
@@ -11,18 +12,12 @@ const LudoGame = () => {
     yellow: [0, 0, 0, 0],
   });
   const [currentTurn, setCurrentTurn] = useState("red");
-  const [diceValue, setDiceValue] = useState(1);
-
-  const rollDice = () => {
-    const value = Math.floor(Math.random() * 6) + 1;
-    setDiceValue(value);
-    return value;
-  };
+  
 
   const movePiece = (color, pieceIndex) => {
     setPlayers((prevPlayers) => {
       const newPositions = { ...prevPlayers };
-      newPositions[color][pieceIndex] += diceValue;
+      newPositions[color][pieceIndex] += gotiValue;
       return newPositions;
     });
     nextTurn();
@@ -38,26 +33,26 @@ const LudoGame = () => {
   return (
     <View style={styles.container}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        <View style={styles.diceHomeWrapper}>
-          <DiceHome
+        <View style={styles.gotiHomeWrapper}>
+          <GotiHome
             players={players}
             movePiece={movePiece}
             currentTurn={currentTurn}
-            diceValue={diceValue}
+            gotiValue={gotiValue}
             color="red"
           />
         </View>
 
-        <View style={styles.upperDicePath}>
-          <DicePath position={'top'}/>
+        <View style={styles.upperGotiPath}>
+          <GotiPath position={'top'}/>
         </View>
 
-        <View style={styles.diceHomeWrapper}>
-          <DiceHome
+        <View style={styles.gotiHomeWrapper}>
+          <GotiHome
             players={players}
             movePiece={movePiece}
             currentTurn={currentTurn}
-            diceValue={diceValue}
+            gotiValue={gotiValue}
             color="green"
           />
         </View>
@@ -66,40 +61,40 @@ const LudoGame = () => {
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         
 
-        <View style={styles.upperDicePath}>
-          <DicePath position={'left'}/>
+        <View style={styles.upperGotiPath}>
+          <GotiPath position={'left'}/>
         </View>
 
         <View style={styles.winningWrapper}>
-
+          <Dice />
         </View>
 
-        <View style={styles.upperDicePath}>
-          <DicePath position={'right'}/>
+        <View style={styles.upperGotiPath}>
+          <GotiPath position={'right'}/>
         </View>
       </View>
 
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        <View style={styles.diceHomeWrapper}>
-          <DiceHome
+        <View style={styles.gotiHomeWrapper}>
+          <GotiHome
             players={players}
             movePiece={movePiece}
             currentTurn={currentTurn}
-            diceValue={diceValue}
+            gotiValue={gotiValue}
             color="orange"
           />
         </View>
 
-        <View style={styles.upperDicePath}>
-          <DicePath position={'bottom'}/>
+        <View style={styles.upperGotiPath}>
+          <GotiPath position={'bottom'}/>
         </View>
 
-        <View style={styles.diceHomeWrapper}>
-          <DiceHome
+        <View style={styles.gotiHomeWrapper}>
+          <GotiHome
             players={players}
             movePiece={movePiece}
             currentTurn={currentTurn}
-            diceValue={diceValue}
+            gotiValue={gotiValue}
             color="blue"
           />
         </View>
@@ -109,27 +104,27 @@ const LudoGame = () => {
 
     // <View style={styles.container}>
     //   <Text style={styles.turnIndicator}>{currentTurn.toUpperCase()} Turn</Text>
-    //   <Text style={styles.diceValue}>Dice: {diceValue}</Text>
-    //   <TouchableOpacity style={styles.diceButton} onPress={rollDice}>
-    //     <Text style={styles.diceButtonText}>Roll Dice</Text>
+    //   <Text style={styles.gotiValue}>Goti: {gotiValue}</Text>
+    //   <TouchableOpacity style={styles.gotiButton} onPress={rollGoti}>
+    //     <Text style={styles.gotiButtonText}>Roll Goti</Text>
     //   </TouchableOpacity>
     //   <View style={styles.board}>
     //     <View style={styles.row}>
-    //       <DiceHome 
+    //       <GotiHome 
     //         players={players}
     //         movePiece={movePiece}
     //         currentTurn={currentTurn}
-    //         diceValue={diceValue}
+    //         gotiValue={gotiValue}
     //         color="red"
     //       />
     //       {/* {renderHome("red")} */}
     //       <View style={styles.path} />
     //       {/* {renderHome("green")} */}
-    //       <DiceHome 
+    //       <GotiHome 
     //         players={players}
     //         movePiece={movePiece}
     //         currentTurn={currentTurn}
-    //         diceValue={diceValue}
+    //         gotiValue={gotiValue}
     //         color="green"
     //       />
     //     </View>
@@ -141,19 +136,19 @@ const LudoGame = () => {
     //       <View style={styles.path} />
     //     </View>
     //     <View style={styles.row}>
-    //     <DiceHome 
+    //     <GotiHome 
     //         players={players}
     //         movePiece={movePiece}
     //         currentTurn={currentTurn}
-    //         diceValue={diceValue}
+    //         gotiValue={gotiValue}
     //         color="blue"
     //       />
     //       <View style={styles.path} />
-    //       <DiceHome 
+    //       <GotiHome 
     //         players={players}
     //         movePiece={movePiece}
     //         currentTurn={currentTurn}
-    //         diceValue={diceValue}
+    //         gotiValue={gotiValue}
     //         color="yellow"
     //       />
     //     </View>
@@ -163,7 +158,7 @@ const LudoGame = () => {
 };
 
 const styles = StyleSheet.create({
-  diceHomeWrapper: {
+  gotiHomeWrapper: {
     width: 300,
     height: 300,
     backgroundColor: "gray",
@@ -186,8 +181,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 1,
+    display: 'flex',
+    justifyContent: "center",
+    alignItems: "center",
   },
-  upperDicePath: {
+  upperGotiPath: {
 
   },
   innerBoxRowOne: {
@@ -205,17 +203,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  diceValue: {
+  gotiValue: {
     fontSize: 18,
     marginBottom: 20,
   },
-  diceButton: {
+  gotiButton: {
     backgroundColor: "#4CAF50",
     padding: 10,
     borderRadius: 5,
     marginBottom: 20,
   },
-  diceButtonText: {
+  gotiButtonText: {
     color: "white",
     fontSize: 16,
   },

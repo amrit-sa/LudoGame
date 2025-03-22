@@ -6,7 +6,7 @@ export const Goti = ({color, value}) => {
         <View style={styles.corner}>
             <TouchableOpacity
                 // onPress={() => {
-                //     if (currentTurn === color && diceValue > 0) movePiece(color, index);
+                //     if (currentTurn === color && gotiValue > 0) movePiece(color, index);
                 // }}
                 style={[styles.piece, { backgroundColor: color }]}
             >
