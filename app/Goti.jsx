@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import redGoti from '@/assets/images/red-goti.png';
 import greenGoti from '@/assets/images/green-goti.png';
 import yellowGoti from '@/assets/images/yellow-goti.png';
 import blueGoti from '@/assets/images/blue-goti.png';
+import { AppContext } from "@/context/AppContext";
 
 const getGotiImage = (color) => {
     switch (color) {
@@ -20,16 +21,18 @@ const getGotiImage = (color) => {
     }
 }
 
-export const Goti = ({ color, gotiValue = 1 }) => {
+export const Goti = ({ color, goti }) => {
+
+     const { currentTurn, diceValue, movePiece } = useContext(AppContext);
 
     return (
 
         <TouchableOpacity
-            // onPress={() => {
-            //     if (currentTurn === color && gotiValue > 0) movePiece(color, index);
-            // }}
+            onPress={() => {
+                if (currentTurn === color && diceValue > 0) movePiece(color, goti);
+            }}
         >
-            {gotiValue > 0 && <Image source={getGotiImage(color)} style={{ width: 20, height: 40 }} />}
+            <Image source={getGotiImage(color)} style={{ width: 20, height: 40 }} />
             {/* <Text>{gotiValue > 0? gotiValue : ""}</Text> */}
         </TouchableOpacity>
     );

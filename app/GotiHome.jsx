@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Goti } from "./Goti";
 import { AppContext } from "@/context/AppContext";
+import { GOTIES } from '@/utils/constants';
 
 export const GotiHome = ({ color }) => {
-    const { currentTurn } = useContext(AppContext);
+    const { currentTurn, gamePosition } = useContext(AppContext);
+    const [gotiA, gotiB, gotiC, gotiD] = GOTIES[color];
 
     return (
         <View style={[styles.home,
@@ -12,47 +14,19 @@ export const GotiHome = ({ color }) => {
 
         ]}>
             <View style={styles.grid}>
-                {/* {[1, 2, 3, 4].map((value) => (
-                    <View style={styles.corner}>
-                        <TouchableOpacity
-                            style={[styles.gotiHomePlace, { backgroundColor: color }]}
-                        >
-                           <Goti />
-                        </TouchableOpacity>
-                    </View>
-                ))} */}
 
-                <View style={styles.corner}>
-                    <View
-                        style={[styles.gotiHomePlace, { borderColor: color }]}
-                    >
-                        <Goti color={color}/>
-                    </View>
-                </View>
+                {GOTIES[color].map((goti) => {
+                    return (
+                        <View style={styles.corner}>
+                            <View
+                                style={[styles.gotiHomePlace, { borderColor: color }]}
+                            >
+                                {(gamePosition[goti]['position'] === goti) && <Goti color={color} goti={gamePosition[goti]} />}
+                            </View>
+                        </View>
+                    )
+                })}
 
-                <View style={styles.corner}>
-                    <View
-                        style={[styles.gotiHomePlace, { borderColor: color }]}
-                    >
-                        <Goti color={color}/>
-                    </View>
-                </View>
-
-                <View style={styles.corner}>
-                    <View
-                        style={[styles.gotiHomePlace, { borderColor: color }]}
-                    >
-                        <Goti color={color}/>
-                    </View>
-                </View>
-
-                <View style={styles.corner}>
-                    <View
-                        style={[styles.gotiHomePlace, { borderColor: color } ]}
-                    >
-                        <Goti color={color}/>
-                    </View>
-                </View>
             </View>
         </View>
     );
