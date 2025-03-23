@@ -15,9 +15,9 @@ export const GotiHome = ({ color }) => {
         ]}>
             <View style={styles.grid}>
 
-                {GOTIES[color].map((goti) => {
+                {GOTIES[color].map((goti,index) => {
                     return (
-                        <View style={styles.corner}>
+                        <View style={styles.corner} key={goti+index}>
                             <View
                                 style={[styles.gotiHomePlace, { borderColor: color }]}
                             >

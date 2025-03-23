@@ -1,135 +1,157 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import { Goti } from "./Goti";
 
+const TopPositions = {
+    1: [
+        { key: 6, styles: ['box'] },
+        { key: 5, styles: ['box', 'checkPoint'] },
+        { key: 4, styles: ['box'] },
+        { key: 3, styles: ['box'] },
+        { key: 2, styles: ['box'] },
+        { key: 1, styles: ['box'] },
+    ],
+    2: [
+        { key: 7, styles: ['box'] },
+        { key: 53, styles: ['box', 'greenSafePoint'] },
+        { key: 54, styles: ['box', 'greenSafePoint'] },
+        { key: 55, styles: ['box', 'greenSafePoint'] },
+        { key: 56, styles: ['box', 'greenSafePoint'] },
+        { key: 57, styles: ['box', 'greenSafePoint'] },
+    ],
+    3: [
+        { key: 8, styles: ['box'] },
+        { key: 9, styles: ['box', 'greenSafePoint'] },
+        { key: 10, styles: ['box'] },
+        { key: 11, styles: ['box'] },
+        { key: 12, styles: ['box'] },
+        { key: 13, styles: ['box'] },
+    ],
+};
+
+const BottomPositions = {
+    1: [
+        { key: 39, styles: ['box'] },
+        { key: 38, styles: ['box'] },
+        { key: 37, styles: ['box'] },
+        { key: 36, styles: ['box'] },
+        { key: 35, styles: ['box', 'yellowSafePoint'] },
+        { key: 34, styles: ['box'] },
+    ],
+    2: [
+        { key: 67, styles: ['box', 'yellowSafePoint'] },
+        { key: 66, styles: ['box', 'yellowSafePoint'] },
+        { key: 65, styles: ['box', 'yellowSafePoint'] },
+        { key: 64, styles: ['box', 'yellowSafePoint'] },
+        { key: 63, styles: ['box', 'yellowSafePoint'] },
+        { key: 33, styles: ['box'] },
+    ],
+    3: [
+        { key: 27, styles: ['box'] },
+        { key: 28, styles: ['box'] },
+        { key: 29, styles: ['box'] },
+        { key: 30, styles: ['box'] },
+        { key: 31, styles: ['box', 'checkPoint'] },
+        { key: 32, styles: ['box'] },
+    ]
+};
+
+const leftPositions = {
+    1: [
+        { key: 47, styles: ['box'] },
+        { key: 48, styles: ['box','redSafePoint'] },
+        { key: 49, styles: ['box'] },
+        { key: 50, styles: ['box'] },
+        { key: 51, styles: ['box'] },
+        { key: 52, styles: ['box'] },
+    ],
+    2: [
+        { key: 46, styles: ['box'] },
+        { key: 68, styles: ['box','redSafePoint'] },
+        { key: 69, styles: ['box','redSafePoint'] },
+        { key: 70, styles: ['box','redSafePoint'] },
+        { key: 71, styles: ['box','redSafePoint'] },
+        { key: 72, styles: ['box','redSafePoint'] },
+    ],
+    3: [
+        { key: 45, styles: ['box'] },
+        { key: 44, styles: ['box','checkPoint'] },
+        { key: 43, styles: ['box'] },
+        { key: 42, styles: ['box'] },
+        { key: 41, styles: ['box'] },
+        { key: 40, styles: ['box'] },
+    ]
+};
+
+const rightPositions = {
+    1: [
+        { key: 14, styles: ['box'] },
+        { key: 15, styles: ['box'] },
+        { key: 16, styles: ['box'] },
+        { key: 17, styles: ['box'] },
+        { key: 18, styles: ['box', 'checkPoint'] },
+        { key: 19, styles: ['box'] },
+    ],
+    2: [
+        { key: 58, styles: ['box', 'blueSafePoint'] },
+        { key: 59, styles: ['box', 'blueSafePoint'] },
+        { key: 60, styles: ['box', 'blueSafePoint'] },
+        { key: 61, styles: ['box', 'blueSafePoint'] },
+        { key: 62, styles: ['box', 'blueSafePoint'] },
+        { key: 20, styles: ['box'] },
+    ],
+    3: [
+        { key: 26, styles: ['box'] },
+        { key: 25, styles: ['box'] },
+        { key: 24, styles: ['box'] },
+        { key: 23, styles: ['box'] },
+        { key: 22, styles: ['box', 'blueSafePoint'] },
+        { key: 21, styles: ['box'] },
+    ]
+};
+
+
+const masterPositions = {
+    top: { alignment: 'top', positions: TopPositions, styles: 'pathRowContainer' },
+    bottom: { alignment: 'bottom', positions: BottomPositions, styles: 'pathRowContainer' },
+    left: { alignment: 'left', positions: leftPositions, styles: 'pathRowsHorizontalContainer' },
+    right: { alignment: 'right', positions: rightPositions, styles: 'pathRowsHorizontalContainer' },
+}
 
 const GotiPath = ({ position }) => {
-    const renderBoxes = () => {
-        let boxes = [];
-        for (let i = 0; i < 6; i++) {
-            boxes.push(
-                <View key={i} style={styles.box} />
-            );
-        }
-        return boxes;
-    };
 
-    if (position == 'top') {
-        return (
-            <View style={styles.pathRowContainer}>
-                <View >
-                    <View key={6} style={styles.box} id={'box-' + 6}></View>
-                    <View key={5} style={[styles.box, styles.checkPoint]} id={'box-' + 5}></View>
-                    <View key={4} style={styles.box} id={'box-' + 4}></View>
-                    <View key={3} style={styles.box} id={'box-' + 3}></View>
-                    <View key={2} style={styles.box} id={'box-' + 2}></View>
-                    <View key={1} style={styles.box} id={'box-' + 1}></View>
-                </View>
-                <View >
-                    <View key={7} style={styles.box} id={'box-' + 7}></View>
-                    <View key={52} style={[styles.box, styles.greenSafePoint]} id={'box-' + 52}></View>
-                    <View key={53} style={[styles.box, styles.greenSafePoint]} id={'box-' + 53}></View>
-                    <View key={54} style={[styles.box, styles.greenSafePoint]} id={'box-' + 54}></View>
-                    <View key={55} style={[styles.box, styles.greenSafePoint]} id={'box-' + 55}></View>
-                    <View key={56} style={[styles.box, styles.greenSafePoint]} id={'box-' + 56}></View>
-                </View>
-                <View >
-                    <View key={8} style={styles.box} id={'box-' + 8}></View>
-                    <View key={9} style={[styles.box, styles.greenSafePoint]} id={'box-' + 9}></View>
-                    <View key={10} style={styles.box} id={'box-' + 10}></View>
-                    <View key={11} style={styles.box} id={'box-' + 11}></View>
-                    <View key={12} style={styles.box} id={'box-' + 12}></View>
-                    <View key={13} style={styles.box} id={'box-' + 13}></View>
-                </View>
-            </View>
-        )
-    } else if (position === 'bottom') {
-        return (
-            <View style={styles.pathRowContainer}>
-                <View >
-                    <View key={38} style={styles.box} id={'box-' + 38}></View>
-                    <View key={37} style={styles.box} id={'box-' + 37}></View>
-                    <View key={36} style={styles.box} id={'box-' + 36}></View>
-                    <View key={35} style={styles.box} id={'box-' + 35}></View>
-                    <View key={34} style={[styles.box, styles.yellowSafePoint]} id={'box-' + 34}></View>
-                    <View key={33} style={styles.box} id={'box-' + 33}></View>
-                </View>
-                <View >
-                    <View key={66} style={[styles.box, styles.yellowSafePoint]} id={'box-' + 66}></View>
-                    <View key={65} style={[styles.box, styles.yellowSafePoint]} id={'box-' + 65}></View>
-                    <View key={64} style={[styles.box, styles.yellowSafePoint]} id={'box-' + 64}></View>
-                    <View key={63} style={[styles.box, styles.yellowSafePoint]} id={'box-' + 63}></View>
-                    <View key={62} style={[styles.box, styles.yellowSafePoint]} id={'box-' + 62}></View>
-                    <View key={33} style={styles.box} id={'box-' + 33}></View>
-                </View>
-                <View >
-                    <View key={27} style={styles.box} id={'box-' + 27}></View>
-                    <View key={28} style={styles.box} id={'box-' + 28}></View>
-                    <View key={29} style={styles.box} id={'box-' + 29}></View>
-                    <View key={30} style={styles.box} id={'box-' + 30}></View>
-                    <View key={31} style={[styles.box, styles.checkPoint]} id={'box-' + 31}></View>
-                    <View key={32} style={styles.box} id={'box-' + 32}></View>
-                </View>
-            </View>
-        )
-    } else if (position === 'left') {
-        return (
-            <View style={styles.pathRowsHorizontalContainer}>
-                <View style={{ flexDirection: "row" }}>
-                    <View key={46} style={styles.box} id={'box-' + 46}></View>
-                    <View key={47} style={[styles.box, styles.redSafePoint]} id={'box-' + 47}></View>
-                    <View key={48} style={styles.box} id={'box-' + 48}></View>
-                    <View key={49} style={styles.box} id={'box-' + 49}></View>
-                    <View key={50} style={styles.box} id={'box-' + 50}></View>
-                    <View key={51} style={styles.box} id={'box-' + 51}></View>
-                </View>
-                <View style={{ flexDirection: "row" }}>
-                    <View key={45} style={styles.box} id={'box-' + 45}></View>
-                    <View key={67} style={[styles.box, styles.redSafePoint]} id={'box-' + 67}></View>
-                    <View key={68} style={[styles.box, styles.redSafePoint]} id={'box-' + 68}></View>
-                    <View key={69} style={[styles.box, styles.redSafePoint]} id={'box-' + 69}></View>
-                    <View key={70} style={[styles.box, styles.redSafePoint]} id={'box-' + 70}></View>
-                    <View key={71} style={[styles.box, styles.redSafePoint]} id={'box-' + 71}></View>
-                </View>
-                <View style={{ flexDirection: "row" }}>
-                    <View key={44} style={styles.box} id={'box-' + 44}></View>
-                    <View key={43} style={[styles.box, styles.checkPoint]} id={'box-' + 43}></View>
-                    <View key={42} style={styles.box} id={'box-' + 42}></View>
-                    <View key={41} style={styles.box} id={'box-' + 41}></View>
-                    <View key={40} style={styles.box} id={'box-' + 40}></View>
-                    <View key={39} style={styles.box} id={'box-' + 39}></View>
-                </View>
-            </View>
-        )
-    } else if (position === 'right') {
-        return (
-            <View style={styles.pathRowsHorizontalContainer}>
-                <View style={{ flexDirection: "row" }}>
-                    <View key={14} style={styles.box} id={'box-' + 14}></View>
-                    <View key={15} style={styles.box} id={'box-' + 15}></View>
-                    <View key={16} style={styles.box} id={'box-' + 16}></View>
-                    <View key={17} style={styles.box} id={'box-' + 17}></View>
-                    <View key={18} style={[styles.box, styles.checkPoint]} id={'box-' + 18}></View>
-                    <View key={19} style={styles.box} id={'box-' + 19}></View>
-                </View>
-                <View style={{ flexDirection: "row" }}>
-                    <View key={61} style={[styles.box, styles.blueSafePoint]} id={'box-' + 61}></View>
-                    <View key={60} style={[styles.box, styles.blueSafePoint]} id={'box-' + 60}></View>
-                    <View key={59} style={[styles.box, styles.blueSafePoint]} id={'box-' + 59}></View>
-                    <View key={58} style={[styles.box, styles.blueSafePoint]} id={'box-' + 58}></View>
-                    <View key={57} style={[styles.box, styles.blueSafePoint]} id={'box-' + 57}></View>
-                    <View key={20} style={styles.box} id={'box-' + 20}></View>
-                </View>
-                <View style={{ flexDirection: "row" }}>
-                    <View key={26} style={styles.box} id={'box-' + 26}></View>
-                    <View key={25} style={styles.box} id={'box-' + 25}></View>
-                    <View key={24} style={styles.box} id={'box-' + 24}></View>
-                    <View key={23} style={styles.box} id={'box-' + 23}></View>
-                    <View key={22} style={[styles.box, styles.blueSafePoint]} id={'box-' + 22}></View>
-                    <View key={21} style={styles.box} id={'box-' + 21}></View>
-                </View>
-            </View>
-        )
-    }
+
+    const pathPosition = masterPositions[position];
+    const isHorizontal = ['left','right'].includes(pathPosition.alignment);
+
+    return (
+        <View style={styles[masterPositions[position]['styles']]}>
+            {[1, 2, 3].map(row => {
+                return (
+                    <View key={row} style={isHorizontal && {flexDirection:'row'}}>
+                        {
+                            masterPositions?.[position]?.['positions']?.[row]
+                                ?.map((item, index) => {
+                                    return (
+                                        <View
+                                            key={item.key}
+                                            style={[...item.styles.map(s => styles[s])]}
+                                            id={'box-' + item.key}
+                                        >
+                                            {item?.values?.length && <>
+                                                <view>
+                                                    {item.values.map(g => <Goti goti={g} />)}
+                                                </view>
+                                            </>}
+                                        </View>
+                                    )
+                                })
+                        }
+                    </View>
+                )
+            })}
+        </View>
+    )
 
     return (
         <></>
