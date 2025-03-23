@@ -16,8 +16,7 @@ export const AppProvider = ({ children }) => {
     const [gamePosition, setGamePosition] = useState(GAME_DEFAULT_POSITION)
     const [currentTurn, setCurrentTurn] = useState("yellow");
     const [diceValue, setDiceValue] = useState(0);
-
-
+    const [gotiPositions, setGotipositions] = useState({});
 
     const rollDice = () => {
         const value = Math.floor(Math.random() * 6) + 1;
@@ -38,18 +37,22 @@ export const AppProvider = ({ children }) => {
         return value;
     };
 
-    const movePiece = (color, goti) => {
+    const movePiece = (goti) => {
 
-        console.log(goti);
         // if this goti is at home which has been clicked then there are two conditions
         // if(diceValue is 6 then this goti can be started) otherwise 
         if (goti.isHome) {
             if (diceValue === 6) {
                 startGoti(goti);
+            }else{
+                return;
             }
         } else {
             const currentGotiPosition = goti.position;
-            const newGotiPosition = Number(currentGotiPosition) + Number(diceValue);
+            let newGotiPosition = Number(currentGotiPosition) + Number(diceValue);
+            if(newGotiPosition > 52){
+                newGotiPosition = newGotiPosition - 52;
+            }
             setGamePosition(prevGamePosition => {
                 const updatedGamePosition = { ...prevGamePosition };
                 updatedGamePosition[goti.id] = {
@@ -58,27 +61,60 @@ export const AppProvider = ({ children }) => {
                 };
                 return updatedGamePosition;
             });
+            handleGotiPositionupdate(goti, newGotiPosition);
         }
         nextTurn();
     };
 
+    const handleGotiPositionupdate = (goti,movedPosition) => {
+        console.log(goti,gotiPositions,movedPosition);
+
+        let currentPosition = {...gotiPositions};
+        let newGotiPos = {...goti};
+        newGotiPos.position = movedPosition;
+        newGotiPos.isHome = false;
+
+        // remove the previous object of this goti from the gotiPositions
+        if(currentPosition[goti.position]){
+            const updatedBoxPosition = currentPosition[goti.position].filter(g => g.id !== goti.id)
+            if(updatedBoxPosition.length === 0) {
+                delete currentPosition[goti.position];
+            }
+            else{
+                currentPosition[goti.position] = updatedBoxPosition;
+            }
+        }
+
+        if(currentPosition[movedPosition]){
+            currentPosition[movedPosition] = [...currentPosition[movedPosition], {...newGotiPos}];
+        }else{
+            currentPosition[movedPosition] = [newGotiPos];
+        }
+        
+        setGotipositions(currentPosition)
+    }
+
     const startGoti = (goti) => {
         
         // check if this goti is at home and dice value is 6 then start it
+        const newGotiPosition = specialPoints.gotiStartingPoint[goti.color];
         setGamePosition(prevGamePosition => {
             const updatedGamePosition = {...prevGamePosition };
             updatedGamePosition[goti.id] = {
                ...updatedGamePosition[goti.id],
                 isHome: false,
-                position: specialPoints.gotiStartingPoint[goti.color],
+                position: newGotiPosition,
             };
             return updatedGamePosition;
         });
+        handleGotiPositionupdate(goti, newGotiPosition);
     };
 
     const nextTurn = () => {
         const colors = ["red", "green", "blue", "yellow"];
-        const nextIndex = (colors.indexOf(currentTurn) + 1) % colors.length;
+        const nextMove = diceValue === 6 ? 0 : 1;
+        const nextIndex = (colors.indexOf(currentTurn) + nextMove) % colors.length;
+        
         setTimeout(()=>{
             setDiceValue(0);
             setCurrentTurn(colors[nextIndex]);
@@ -95,6 +131,7 @@ export const AppProvider = ({ children }) => {
             movePiece,
             nextTurn,
             gamePosition,
+            gotiPositions,
         }}>
             {children}
         </AppContext.Provider>

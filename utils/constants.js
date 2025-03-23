@@ -14,9 +14,9 @@ export const specialPoints = {
     yellowStartPoint:34,
     redStartPoint:47,
     gotiStartingPoint: {
-        red: 47,
+        red: 48,
         blue: 22,
-        yellow: 34,
+        yellow: 35,
         green: 9
     }
 };

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Goti } from "./Goti";
+import { AppContext } from "@/context/AppContext";
 
 const TopPositions = {
     1: [
@@ -120,6 +121,7 @@ const masterPositions = {
 
 const GotiPath = ({ position }) => {
 
+    const { gotiPositions } = useContext(AppContext);
 
     const pathPosition = masterPositions[position];
     const isHorizontal = ['left','right'].includes(pathPosition.alignment);
@@ -138,9 +140,9 @@ const GotiPath = ({ position }) => {
                                             style={[...item.styles.map(s => styles[s])]}
                                             id={'box-' + item.key}
                                         >
-                                            {item?.values?.length && <>
+                                            {(gotiPositions[item.key] && gotiPositions[item.key].length>0) && <>
                                                 <view>
-                                                    {item.values.map(g => <Goti goti={g} />)}
+                                                    {gotiPositions[item.key].map(g => <Goti goti={g} />)}
                                                 </view>
                                             </>}
                                         </View>

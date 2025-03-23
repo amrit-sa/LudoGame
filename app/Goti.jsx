@@ -21,15 +21,16 @@ const getGotiImage = (color) => {
     }
 }
 
-export const Goti = ({ color, goti }) => {
+export const Goti = ({ goti }) => {
 
-     const { currentTurn, diceValue, movePiece } = useContext(AppContext);
+    const { color } = goti;
+    const { currentTurn, diceValue, movePiece } = useContext(AppContext);
 
     return (
 
         <TouchableOpacity
             onPress={() => {
-                if (currentTurn === color && diceValue > 0) movePiece(color, goti);
+                if (currentTurn === goti.color && diceValue > 0) movePiece(goti);
             }}
         >
             <Image source={getGotiImage(color)} style={{ width: 20, height: 40 }} />
