@@ -11,7 +11,7 @@ export const AppProvider = ({ children }) => {
     green: [0, 0, 0, 0],
     yellow: [0, 0, 0, 0],
   });
-  const [currentTurn, setCurrentTurn] = useState("red");
+  const [currentTurn, setCurrentTurn] = useState("yellow");
   const [diceValue, setDiceValue] = useState(1);
   
 

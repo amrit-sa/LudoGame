@@ -13,7 +13,7 @@ export const Dice = ({ isDisable }) => {
             disabled={isDisable}
         >
             <View style={styles.dice}>
-                <Text style={styles.text}>{diceValue}</Text>
+                <View style={styles.text}>{diceValue}</View>
             </View>
         </TouchableOpacity>
     )

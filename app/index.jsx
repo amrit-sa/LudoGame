@@ -47,7 +47,7 @@ const LudoGame = () => {
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         <View style={styles.gotiHomeWrapper}>
           <GotiHome
-            color="orange"
+            color="yellow"
           />
         </View>
 
