@@ -2,6 +2,7 @@
 import { GAME_DEFAULT_POSITION, GOTIES, specialPoints } from '@/utils/constants';
 import React, { createContext, useState } from 'react';
 
+const { gotiStartingPoint, checkPoints } = specialPoints;
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -47,6 +48,7 @@ export const AppProvider = ({ children }) => {
             }else{
                 return;
             }
+            nextTurn();
         } else {
             const currentGotiPosition = goti.position;
             let newGotiPosition = Number(currentGotiPosition) + Number(diceValue);
@@ -63,12 +65,12 @@ export const AppProvider = ({ children }) => {
             });
             handleGotiPositionupdate(goti, newGotiPosition);
         }
-        nextTurn();
+        
     };
 
     const handleGotiPositionupdate = (goti,movedPosition) => {
         console.log(goti,gotiPositions,movedPosition);
-
+        let shouldGiveExtraTurn = false;
         let currentPosition = {...gotiPositions};
         let newGotiPos = {...goti};
         newGotiPos.position = movedPosition;
@@ -84,20 +86,44 @@ export const AppProvider = ({ children }) => {
                 currentPosition[goti.position] = updatedBoxPosition;
             }
         }
-
-        if(currentPosition[movedPosition]){
-            currentPosition[movedPosition] = [...currentPosition[movedPosition], {...newGotiPos}];
+        const currentBoxValue = currentPosition[movedPosition]; 
+        if(currentBoxValue){
+            if(checkPoints.includes(movedPosition) || currentBoxValue[0]?.color === newGotiPos?.color){
+                currentPosition[movedPosition] = [...currentBoxValue, {...newGotiPos}];
+            }else{
+                const gotiesAtThisBox = currentBoxValue;
+                currentPosition[movedPosition] = [newGotiPos];
+                fallBackToHome(gotiesAtThisBox);
+                shouldGiveExtraTurn = true;
+            }
+            
         }else{
             currentPosition[movedPosition] = [newGotiPos];
         }
+        setGotipositions(currentPosition);
+        !shouldGiveExtraTurn && nextTurn();
+    }
+
+    const fallBackToHome = (goties) => {
+        goties.forEach(goti => {
+            setGamePosition(prevGamePosition => {
+                const updatedGamePosition = {...prevGamePosition };
+                updatedGamePosition[goti.id] = {
+                   ...updatedGamePosition[goti.id],
+                    isHome: true,
+                    position: goti.id,
+                };
+                return updatedGamePosition;
+            });
+            handleGotiPositionupdate(goti, gotiStartingPoint[goti.color]);
+        });
         
-        setGotipositions(currentPosition)
     }
 
     const startGoti = (goti) => {
         
         // check if this goti is at home and dice value is 6 then start it
-        const newGotiPosition = specialPoints.gotiStartingPoint[goti.color];
+        const newGotiPosition = gotiStartingPoint[goti.color];
         setGamePosition(prevGamePosition => {
             const updatedGamePosition = {...prevGamePosition };
             updatedGamePosition[goti.id] = {

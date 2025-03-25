@@ -9,7 +9,7 @@ export const Dice = ({ isDisable }) => {
 
     return (
         <TouchableOpacity
-            onPress={rollDice}
+            onPress={diceValue===0 ? rollDice : null}
             disabled={isDisable}
         >
             <View style={styles.dice}>

@@ -8,7 +8,8 @@ export const specialPoints = {
     yellowSafeZone:[62,63,64,65,66],
     redSafeZone:[67,68,69,70,71],
     // safeZones: [5,9,18,22,31,34,43,47,...this.greenSafeZone,...this.blueSafeZone,...this.yellowSafeZone,...this.redSafeZone],
-    otherSafeZones: [5,9,18,22,31,34,43,47],
+    checkPoints: [4,9,17,22,30,35,42,48],
+    allSafePoints:()=>[...this.checkPoints, ...Object.values(this.gotiStartingPoint)],
     greenStartPoint:9,
     blueStartPoint:22,
     yellowStartPoint:34,
@@ -18,6 +19,12 @@ export const specialPoints = {
         blue: 22,
         yellow: 35,
         green: 9
+    },
+    turingPoints: {
+        red: 46,
+        blue: 20,
+        yellow: 33,
+        green: 7
     }
 };
 

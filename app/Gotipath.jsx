@@ -6,8 +6,8 @@ import { AppContext } from "@/context/AppContext";
 const TopPositions = {
     1: [
         { key: 6, styles: ['box'] },
-        { key: 5, styles: ['box', 'checkPoint'] },
-        { key: 4, styles: ['box'] },
+        { key: 5, styles: ['box'] },
+        { key: 4, styles: ['box', 'checkPoint'] },
         { key: 3, styles: ['box'] },
         { key: 2, styles: ['box'] },
         { key: 1, styles: ['box'] },
@@ -51,8 +51,8 @@ const BottomPositions = {
         { key: 27, styles: ['box'] },
         { key: 28, styles: ['box'] },
         { key: 29, styles: ['box'] },
-        { key: 30, styles: ['box'] },
-        { key: 31, styles: ['box', 'checkPoint'] },
+        { key: 30, styles: ['box', 'checkPoint'] },
+        { key: 31, styles: ['box'] },
         { key: 32, styles: ['box'] },
     ]
 };
@@ -76,8 +76,8 @@ const leftPositions = {
     ],
     3: [
         { key: 45, styles: ['box'] },
-        { key: 44, styles: ['box','checkPoint'] },
-        { key: 43, styles: ['box'] },
+        { key: 44, styles: ['box'] },
+        { key: 43, styles: ['box','checkPoint'] },
         { key: 42, styles: ['box'] },
         { key: 41, styles: ['box'] },
         { key: 40, styles: ['box'] },
@@ -89,8 +89,8 @@ const rightPositions = {
         { key: 14, styles: ['box'] },
         { key: 15, styles: ['box'] },
         { key: 16, styles: ['box'] },
-        { key: 17, styles: ['box'] },
-        { key: 18, styles: ['box', 'checkPoint'] },
+        { key: 17, styles: ['box', 'checkPoint'] },
+        { key: 18, styles: ['box'] },
         { key: 19, styles: ['box'] },
     ],
     2: [
