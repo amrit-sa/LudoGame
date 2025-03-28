@@ -119,7 +119,7 @@ export const AppProvider = ({ children }) => {
         // handleGotiPositionupdate(goti, newGotiPosition);
     };
 
-    const endGoti = async(goti) => {
+    const endGoti = (goti) => {
         console.log(goti, 'ending goti')
         
         const newGotiPosition = goti.id;
