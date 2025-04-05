@@ -21,7 +21,7 @@ const getGotiImage = (color) => {
     }
 }
 
-export const Goti = ({ goti }) => {
+const Goti = ({ goti }) => {
 
     const { color } = goti;
     const { currentTurn, diceValue, movePiece } = useContext(AppContext);
@@ -33,7 +33,7 @@ export const Goti = ({ goti }) => {
                 if (currentTurn === goti.color && diceValue > 0) movePiece(goti);
             }}
         >
-            <Image source={getGotiImage(color)} style={{ width: 20, height: 40 }} />
+            <Image source={getGotiImage(color)} style={{ width: 10, height: 20 }} />
             {/* <Text>{gotiValue > 0? gotiValue : ""}</Text> */}
         </TouchableOpacity>
     );
@@ -59,3 +59,5 @@ const styles = StyleSheet.create({
     },
 
 });
+
+export default Goti;

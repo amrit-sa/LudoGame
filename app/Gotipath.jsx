@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
-import { Goti } from "./Goti";
+import Goti from "./Goti";
 import { AppContext } from "@/context/AppContext";
+import StarIcon from "@/assets/StarIcon";
+import { specialPoints } from "@/utils/constants";
+
+const { gotiStartingPoint, starredPoints } = specialPoints;
 
 const TopPositions = {
     1: [
@@ -60,7 +64,7 @@ const BottomPositions = {
 const leftPositions = {
     1: [
         { key: 47, styles: ['box'] },
-        { key: 48, styles: ['box','redSafePoint'] },
+        { key: 48, styles: ['box', 'redSafePoint'] },
         { key: 49, styles: ['box'] },
         { key: 50, styles: ['box'] },
         { key: 51, styles: ['box'] },
@@ -68,16 +72,16 @@ const leftPositions = {
     ],
     2: [
         { key: 46, styles: ['box'] },
-        { key: 68, styles: ['box','redSafePoint'] },
-        { key: 69, styles: ['box','redSafePoint'] },
-        { key: 70, styles: ['box','redSafePoint'] },
-        { key: 71, styles: ['box','redSafePoint'] },
-        { key: 72, styles: ['box','redSafePoint'] },
+        { key: 68, styles: ['box', 'redSafePoint'] },
+        { key: 69, styles: ['box', 'redSafePoint'] },
+        { key: 70, styles: ['box', 'redSafePoint'] },
+        { key: 71, styles: ['box', 'redSafePoint'] },
+        { key: 72, styles: ['box', 'redSafePoint'] },
     ],
     3: [
         { key: 45, styles: ['box'] },
         { key: 44, styles: ['box'] },
-        { key: 43, styles: ['box','checkPoint'] },
+        { key: 43, styles: ['box', 'checkPoint'] },
         { key: 42, styles: ['box'] },
         { key: 41, styles: ['box'] },
         { key: 40, styles: ['box'] },
@@ -124,27 +128,50 @@ const GotiPath = ({ position }) => {
     const { gotiPositions } = useContext(AppContext);
 
     const pathPosition = masterPositions[position];
-    const isHorizontal = ['left','right'].includes(pathPosition.alignment);
+    const isHorizontal = ['left', 'right'].includes(pathPosition.alignment);
 
     return (
         <View style={styles[masterPositions[position]['styles']]}>
             {[1, 2, 3].map(row => {
                 return (
-                    <View key={row} style={isHorizontal && {flexDirection:'row'}}>
+                    <View key={row} style={isHorizontal && { flexDirection: 'row' }}>
                         {
                             masterPositions?.[position]?.['positions']?.[row]
                                 ?.map((item, index) => {
+                                    const isCheckpoint = starredPoints.includes(item.key); // ← define this list above
+                                    const gotisHere = gotiPositions[item.key] && gotiPositions[item.key].length > 0;
                                     return (
                                         <View
                                             key={item.key}
-                                            style={[...item.styles.map(s => styles[s])]}
+                                            style={[
+                                                styles.tileWrapper,
+                                                ...item.styles.map(s => styles[s])
+                                            ]}
                                             id={'box-' + item.key}
                                         >
-                                            {(gotiPositions[item.key] && gotiPositions[item.key].length>0) && <>
-                                                <view>
-                                                    {gotiPositions[item.key].map(g => <Goti goti={g} />)}
-                                                </view>
-                                            </>}
+                                            {isCheckpoint && (
+                                                <StarIcon
+                                                    size={32}
+                                                    color="orange"
+                                                    style={styles.starBackground}
+                                                />
+                                            )}
+                                            {/* {(gotiPositions[item.key] && gotiPositions[item.key].length > 0) && <>
+                                                <View>
+                                                    <>
+                                                        {gotiPositions[item.key].map(g => <Goti goti={g} />)}
+                                                    </>
+                                                </View>
+                                            </>} */}
+
+                                            {gotisHere && (
+                                                <View style={styles.gotiWrapper}>
+                                                    {gotiPositions[item.key].map((g, i) => (
+                                                        <Goti key={g.id || i} goti={g} />
+                                                    ))}
+                                                </View>
+                                            )}
+
                                         </View>
                                     )
                                 })
@@ -168,16 +195,16 @@ const styles = StyleSheet.create({
 
     },
     greenSafePoint: {
-        backgroundColor: "green",
+        backgroundColor: "#00800096",
     },
     blueSafePoint: {
-        backgroundColor: "blue",
+        backgroundColor: "rgb(125 125 255)",
     },
     yellowSafePoint: {
-        backgroundColor: "yellow",
+        backgroundColor: "rgb(189 189 0)",
     },
     redSafePoint: {
-        backgroundColor: "red",
+        backgroundColor: "rgb(231 110 110)",
     },
     container: {
         flexDirection: "row",
@@ -186,19 +213,44 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     box: {
-        width: 50,
-        height: 50,
+        width: 25,
+        height: 25,
         backgroundColor: "lightgray",
-        margin: 1,
-        borderWidth: 1,
+        // margin: 1,
+        borderWidth: 0.3,
         borderColor: "black",
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 5,
+        // borderRadius: 5,
     },
     checkPoint: {
-        backgroundColor: 'purple'
-    }
+        // backgroundColor: 'purple'
+    },
+
+    tileWrapper: {
+        width: '6.66%',
+        height: '6.66%',
+        position: 'relative', // required to position children absolutely
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#ccc',
+    },
+    starBackground: {
+        position: 'absolute',
+        // top: '20%',
+        // left: '20%',
+        zIndex: 0,
+        opacity: 0.4,
+    },
+    gotiWrapper: {
+        position: 'relative',
+        zIndex: 1, // puts it above the star
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 export default GotiPath;

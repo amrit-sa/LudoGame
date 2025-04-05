@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Goti } from "./Goti";
+import Goti from "./Goti";
 import { AppContext } from "@/context/AppContext";
 import { GOTIES } from '@/utils/constants';
 
-export const GotiHome = ({ color }) => {
+const GotiHome = ({ color }) => {
     const { currentTurn, gamePosition } = useContext(AppContext);
     const [gotiA, gotiB, gotiC, gotiD] = GOTIES[color];
 
     return (
         <View style={[styles.home,
-        currentTurn === color && { border: `4px solid ${color}`, backgroundColor: 'white' }
-
+        currentTurn === color ? { boxShadow: `0 0 6px 13px ${color} inset`, backgroundColor: 'white' }
+            : {boxShadow: `0 0 0px 13px ${color} inset`, backgroundColor: 'white'}
         ]}>
             <View style={styles.grid}>
 
@@ -19,7 +19,7 @@ export const GotiHome = ({ color }) => {
                     return (
                         <View style={styles.corner} key={goti+index}>
                             <View
-                                style={[styles.gotiHomePlace, { borderColor: color }]}
+                                style={[styles.gotiHomePlace, { boxShadow : `0 0 1px 1px ${color}` }]}
                             >
                                 {(gamePosition[goti]['position'] === goti) && <Goti color={color} goti={gamePosition[goti]} />}
                             </View>
@@ -31,8 +31,6 @@ export const GotiHome = ({ color }) => {
         </View>
     );
 };
-
-
 
 const styles = StyleSheet.create({
     home: {
@@ -54,12 +52,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     gotiHomePlace: {
-        width: 50,
-        height: 50,
-        borderRadius: 15,
+        width: 30,
+        height: 30,
+        borderRadius: '50%',
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "white",
-        border: `4px solid`
+        backgroundColor: "black",
+        // border: `4px solid`,
+        
     },
 });
+
+export default GotiHome;

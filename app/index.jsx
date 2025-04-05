@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { GotiHome } from "./GotiHome";
+import GotiHome from "./GotiHome";
 import GotiPath from "./Gotipath";
-import { Dice } from "./Dice";
+import Dice from "./Dice";
 import { AppContext } from "@/context/AppContext";
 
 const LudoGame = () => {
-  const { value, setValue } = useContext(AppContext);
+  const { currentTurn } = useContext(AppContext);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         <View style={styles.gotiHomeWrapper}>
           <GotiHome
@@ -28,14 +28,14 @@ const LudoGame = () => {
         </View>
       </View>
 
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         
 
         <View style={styles.upperGotiPath}>
           <GotiPath position={'left'}/>
         </View>
 
-        <View style={styles.winningWrapper}>
+        <View style={[styles.winningWrapper, { backgroundColor: currentTurn , boxShadow: `0 0 2px 6px ${currentTurn} inset`} ]}>
           <Dice />
         </View>
 
@@ -121,28 +121,28 @@ const LudoGame = () => {
 
 const styles = StyleSheet.create({
   gotiHomeWrapper: {
-    width: 300,
-    height: 300,
+    width: 150,
+    height: 150,
     backgroundColor: "gray",
-    borderRadius: 10,
-    marginBottom: 5,
+    // borderRadius: 10,
+    marginBottom: 1,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 1,
   },
   winningWrapper: {
-    width: 150,
-    height: 150,
+    width: 75,
+    height: 75,
     backgroundColor: "white",
-    borderRadius: 5,
-    marginBottom: 0,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 1,
+    // borderRadius: 5,
+    // marginBottom: 0,
+    // shadowColor: "#000",
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
+    // elevation: 1,
     display: 'flex',
     justifyContent: "center",
     alignItems: "center",
@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   board: {
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
     flexDirection: "column",
   },
   row: {
@@ -196,13 +196,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   piece: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 20,
+    height: 20,
+    borderRadius: 8,
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
-    margin: 5,
+    margin: 3,
   },
   pieceText: {
     fontWeight: "bold",

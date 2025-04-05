@@ -2,7 +2,7 @@ import { AppContext } from "@/context/AppContext";
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { View, StyleSheet, TouchableOpacity, Image, Animated } from "react-native";
 
-export const Dice = ({ isDisable }) => {
+const Dice = ({ isDisable }) => {
     const { diceValue, rollDice } = useContext(AppContext);
     const [isRolling, setIsRolling] = useState(false);
     const prevDiceValue = useRef(0);
@@ -72,12 +72,12 @@ export const Dice = ({ isDisable }) => {
                 {isRolling ? (
                     <Animated.Image
                         source={diceRolling}
-                        style={[{ width: 100, height: 90 }, animatedStyle]}
+                        style={[{ width: 50, height: 50 }, animatedStyle]}
                     />
                 ) : (diceValue === 0) ?
-                    <Image source={diceRolling} style={{ width: 80, height: 70 }} />
+                    <Image source={diceRolling} style={{ width: 40, height: 35 }} />
                     : (
-                        <Image source={diceImages[diceValue]} style={{ width: 50, height: 50 }} />
+                        <Image source={diceImages[diceValue]} style={{ width: 40, height: 40 }} />
                     )
                 }
 
@@ -88,8 +88,8 @@ export const Dice = ({ isDisable }) => {
 
 const styles = StyleSheet.create({
     dice: {
-        width: 70,
-        height: 70,
+        width: 40,
+        height: 40,
         backgroundColor: 'white',
         borderRadius: 10,
         justifyContent: 'center',
@@ -98,6 +98,8 @@ const styles = StyleSheet.create({
         borderColor: 'black',
     },
     text: {
-        fontSize: 30,
+        fontSize: 10,
     },
 });
+
+export default Dice;
