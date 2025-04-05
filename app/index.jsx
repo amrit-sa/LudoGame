@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   winningWrapper: {
     width: 150,
     height: 150,
-    backgroundColor: "purple",
+    backgroundColor: "white",
     borderRadius: 5,
     marginBottom: 0,
     shadowColor: "#000",
