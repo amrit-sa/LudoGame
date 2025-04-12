@@ -1,11 +1,50 @@
 import { AppContext } from "@/context/AppContext";
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { View, StyleSheet, TouchableOpacity, Image, Animated } from "react-native";
+import { Audio } from 'expo-av';
+
+// const diceSound = new Audio.Sound.createAsync(
+//     require('@/assets/sounds/dice-rolling-1.mp3'),
+//     { shouldPlay: false },
+//     (error) => {
+//         if (error) {
+//             // console.error('Failed to load the sound', error);
+//         }
+//     }
+// );
+
 
 const Dice = ({ isDisable }) => {
     const { diceValue, rollDice } = useContext(AppContext);
     const [isRolling, setIsRolling] = useState(false);
     const prevDiceValue = useRef(0);
+    const [sound, setSound] = useState();
+
+    useEffect(() => {
+        loadSound();
+        return () => {
+            if (sound) {
+                sound.unloadAsync();
+            }
+        };
+    }, []);
+
+    async function loadSound() {
+        const { sound } = await Audio.Sound.createAsync(
+            require('@/assets/sounds/dice-rolling-1.mp3')
+        );
+        setSound(sound);
+    }
+
+    async function playSound() {
+        if (sound) {
+            try {
+                await sound.replayAsync();
+            } catch (error) {
+                console.error('Failed to play sound', error);
+            }
+        }
+    }
 
     const diceImages = {
         '0': require('@/assets/images/dice_one.jpg'),
@@ -46,8 +85,8 @@ const Dice = ({ isDisable }) => {
         transform: [{ rotate: rotateInterpolate }],
     };
 
-    const handleDiceClickEvent = () => {
-
+    const handleDiceClickEvent = async() => {
+        await playSound();
         setIsRolling(true);
         Animated.loop(
             Animated.timing(rotation, {
@@ -77,7 +116,7 @@ const Dice = ({ isDisable }) => {
                 ) : (diceValue === 0) ?
                     <Image source={diceRolling} style={{ width: 40, height: 35 }} />
                     : (
-                        <Image source={diceImages[diceValue]} style={{ width: 40, height: 40 }} />
+                        <Image source={diceImages[diceValue]} style={{ width: 40, height: 40, borderRadius: 5 }} />
                     )
                 }
 
