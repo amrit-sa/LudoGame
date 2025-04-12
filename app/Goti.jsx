@@ -33,7 +33,7 @@ const Goti = ({ goti }) => {
                 if (currentTurn === goti.color && diceValue > 0) movePiece(goti);
             }}
         >
-            <Image source={getGotiImage(color)} style={{ width: 15, height: 30 }} />
+            <Image source={getGotiImage(color)} style={{ width: 10, height: 20 }} />
             {/* <Text>{gotiValue > 0? gotiValue : ""}</Text> */}
         </TouchableOpacity>
     );

@@ -2,7 +2,7 @@
 import { GAME_DEFAULT_POSITION, GOTIES, specialPoints } from '@/utils/constants';
 import React, { createContext, useEffect, useState } from 'react';
 
-const { gotiStartingPoint, checkPoints } = specialPoints;
+const { gotiStartingPoint, checkPoints, turingPoints, carpetEntryPoints } = specialPoints;
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -153,13 +153,18 @@ export const AppProvider = ({ children }) => {
         let currentPosition = goti.position;
         let shouldGiveExtraTurn = false;
         let gamePositions = {};
-        console.log(goti, diceValue , 'here 136'
-        )
+        
         for (let i = 1; i <= diceValue; i++) {
-            // Calculate the next position
+            //check if goti can go in winning zone
+            // using goti color, box number
             let nextPosition = currentPosition + 1;
-            if (nextPosition > 52) {
-                nextPosition = nextPosition - 52;
+            // const canEnterWinnigZone  = checkGotiEligibility(goti);
+            if(turingPoints[goti?.color] == currentPosition) {
+                nextPosition = carpetEntryPoints[goti.color];
+            }else{
+                if (nextPosition == 53) {
+                    nextPosition = 1;
+                }
             }
 
             // Create a deep copy of the current positions

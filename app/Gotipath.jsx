@@ -98,11 +98,11 @@ const rightPositions = {
         { key: 19, styles: ['box'] },
     ],
     2: [
-        { key: 58, styles: ['box', 'blueSafePoint'] },
-        { key: 59, styles: ['box', 'blueSafePoint'] },
-        { key: 60, styles: ['box', 'blueSafePoint'] },
-        { key: 61, styles: ['box', 'blueSafePoint'] },
         { key: 62, styles: ['box', 'blueSafePoint'] },
+        { key: 61, styles: ['box', 'blueSafePoint'] },
+        { key: 60, styles: ['box', 'blueSafePoint'] },
+        { key: 59, styles: ['box', 'blueSafePoint'] },
+        { key: 58, styles: ['box', 'blueSafePoint'] },
         { key: 20, styles: ['box'] },
     ],
     3: [

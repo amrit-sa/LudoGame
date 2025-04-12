@@ -26,6 +26,12 @@ export const specialPoints = {
         blue: 20,
         yellow: 33,
         green: 7
+    },
+    carpetEntryPoints: {
+        red: 68,
+        blue: 58,
+        yellow: 63,
+        green: 53,
     }
 };
 
