@@ -195,13 +195,13 @@ const styles = StyleSheet.create({
 
     },
     greenSafePoint: {
-        backgroundColor: "#00800096",
+        backgroundColor: "rgb(38 177 38)",
     },
     blueSafePoint: {
         backgroundColor: "rgb(125 125 255)",
     },
     yellowSafePoint: {
-        backgroundColor: "rgb(189 189 0)",
+        backgroundColor: "rgb(235 235 0)",
     },
     redSafePoint: {
         backgroundColor: "rgb(231 110 110)",
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     box: {
         width: 25,
         height: 25,
-        backgroundColor: "lightgray",
+        backgroundColor: "white",
         // margin: 1,
         borderWidth: 0.3,
         borderColor: "black",

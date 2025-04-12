@@ -19,7 +19,7 @@ const GotiHome = ({ color }) => {
                     return (
                         <View style={styles.corner} key={goti+index}>
                             <View
-                                style={[styles.gotiHomePlace, { boxShadow : `0 0 1px 1px ${color}` }]}
+                                // style={[styles.gotiHomePlace, { boxShadow : `0 0 1px 1px ${color}` }]}
                             >
                                 {(gamePosition[goti]['position'] === goti) && <Goti color={color} goti={gamePosition[goti]} />}
                             </View>
@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
     gotiHomePlace: {
         width: 30,
         height: 30,
-        borderRadius: '50%',
+        // borderRadius: '50%',
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "black",
+        // backgroundColor: "black",
         // border: `4px solid`,
         
     },

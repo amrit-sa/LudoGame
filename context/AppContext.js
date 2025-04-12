@@ -260,7 +260,7 @@ export const AppProvider = ({ children }) => {
                 });
 
                 // Wait for a small delay to create the animation effect
-                await new Promise((resolve) => setTimeout(resolve, 80));
+                await new Promise((resolve) => setTimeout(resolve, 140));
 
                 // Update the current position for the next iteration
                 currentPosition = nextPosition;
