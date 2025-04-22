@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top-left triangle (Green) -->
+  <polygon points="0,0 100,100 0,200" fill="#4CAF50"></polygon>
+  
+  <!-- Top-right triangle (Yellow) -->
+  <polygon points="0,0 200,0 100,100" fill="#FFEB3B"></polygon>
+  
+  <!-- Bottom-left triangle (Blue) -->
+  <polygon points="0,200 100,100 200,200" fill="#2196F3"></polygon>
+  
+  <!-- Bottom-right triangle (Red) -->
+  <polygon points="100,100 200,0 200,200" fill="#F44336"></polygon>
+</svg>

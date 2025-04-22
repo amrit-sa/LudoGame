@@ -4,66 +4,71 @@ import GotiHome from "./GotiHome";
 import GotiPath from "./Gotipath";
 import Dice from "./Dice";
 import { AppContext } from "@/context/AppContext";
+import Pevelion from "./Pevelion";
+import WinningZone from "./WinningZone";
 
 const LudoGame = () => {
   const { currentTurn } = useContext(AppContext);
 
   return (
-    <View style={[styles.container]}>
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        <View style={styles.gotiHomeWrapper}>
-          <GotiHome
-            color="red"
-          />
+    <>
+      <View style={[styles.container]}>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+          <View style={styles.gotiHomeWrapper}>
+            <GotiHome
+              color="red"
+            />
+          </View>
+
+          <View style={styles.upperGotiPath}>
+            <GotiPath position={'top'} />
+          </View>
+
+          <View style={styles.gotiHomeWrapper}>
+            <GotiHome
+              color="green"
+            />
+          </View>
         </View>
 
-        <View style={styles.upperGotiPath}>
-          <GotiPath position={'top'}/>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+
+
+          <View style={styles.upperGotiPath}>
+            <GotiPath position={'left'} />
+          </View>
+
+          {/* <View style={[styles.winningWrapper, { backgroundColor: currentTurn, boxShadow: `0 0 2px 6px ${currentTurn} inset` }]}> */}
+            {/* <Dice /> */}
+          {/* </View> */}
+          <WinningZone />
+
+          <View style={styles.upperGotiPath}>
+            <GotiPath position={'right'} />
+          </View>
         </View>
 
-        <View style={styles.gotiHomeWrapper}>
-          <GotiHome
-            color="green"
-          />
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+          <View style={styles.gotiHomeWrapper}>
+            <GotiHome
+              color="yellow"
+            />
+          </View>
+
+          <View style={styles.upperGotiPath}>
+            <GotiPath position={'bottom'} />
+          </View>
+
+          <View style={styles.gotiHomeWrapper}>
+            <GotiHome
+              color="blue"
+            />
+          </View>
         </View>
       </View>
 
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        
-
-        <View style={styles.upperGotiPath}>
-          <GotiPath position={'left'}/>
-        </View>
-
-        <View style={[styles.winningWrapper, { backgroundColor: currentTurn , boxShadow: `0 0 2px 6px ${currentTurn} inset`} ]}>
-          <Dice />
-        </View>
-
-        <View style={styles.upperGotiPath}>
-          <GotiPath position={'right'}/>
-        </View>
-      </View>
-
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        <View style={styles.gotiHomeWrapper}>
-          <GotiHome
-            color="yellow"
-          />
-        </View>
-
-        <View style={styles.upperGotiPath}>
-          <GotiPath position={'bottom'}/>
-        </View>
-
-        <View style={styles.gotiHomeWrapper}>
-          <GotiHome
-            color="blue"
-          />
-        </View>
-      </View>
-    </View>
-
-
+      <Pevelion />
+    </>
     // <View style={styles.container}>
     //   <Text style={styles.turnIndicator}>{currentTurn.toUpperCase()} Turn</Text>
     //   <Text style={styles.gotiValue}>Goti: {gotiValue}</Text>
