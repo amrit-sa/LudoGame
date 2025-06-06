@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        padding: 0,
+        margin: 0,
     },
     winningZone: {
         width: 75, // Set the size of the square

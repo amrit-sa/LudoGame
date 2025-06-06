@@ -10,8 +10,8 @@ const GotiHome = ({ color }) => {
 
     return (
         <View style={[styles.home,
-        currentTurn === color ? { boxShadow: `0 0 6px 13px ${color} inset`, backgroundColor: 'white' }
-            : {boxShadow: `0 0 0px 13px ${color} inset`, backgroundColor: 'white'}
+        currentTurn === color ? { boxShadow: `0 0 6px 13px ${color} inset`, backgroundColor: 'rgb(179 179 179)' }
+            : {boxShadow: `0 0 0px 13px ${color} inset`, backgroundColor: 'rgb(63 61 61)'}
         ]}>
             <View style={styles.grid}>
 

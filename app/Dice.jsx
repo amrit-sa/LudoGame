@@ -114,7 +114,7 @@ const Dice = ({ isDisable }) => {
                         style={[{ width: 50, height: 50 }, animatedStyle]}
                     />
                 ) : (diceValue === 0) ?
-                    <Image source={diceRolling} style={{ width: 40, height: 35 }} />
+                    <Image source={diceRolling} style={{ width: 45, height: 40 }} />
                     : (
                         <Image source={diceImages[diceValue]} style={{ width: 40, height: 40, borderRadius: 5 }} />
                     )
@@ -127,8 +127,8 @@ const Dice = ({ isDisable }) => {
 
 const styles = StyleSheet.create({
     dice: {
-        width: 40,
-        height: 40,
+        width: 45,
+        height: 45,
         backgroundColor: 'white',
         borderRadius: 10,
         justifyContent: 'center',

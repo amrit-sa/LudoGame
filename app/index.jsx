@@ -13,7 +13,7 @@ const LudoGame = () => {
   return (
     <>
       <View style={[styles.container]}>
-        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View style={styles.gotiHomeWrapper}>
             <GotiHome
               color="red"
@@ -31,10 +31,10 @@ const LudoGame = () => {
           </View>
         </View>
 
-        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: -1 }}>
 
 
-          <View style={styles.upperGotiPath}>
+          <View style={[styles.upperGotiPath, { marginLeft: 8}]}>
             <GotiPath position={'left'} />
           </View>
 
@@ -43,12 +43,12 @@ const LudoGame = () => {
           {/* </View> */}
           <WinningZone />
 
-          <View style={styles.upperGotiPath}>
+          <View style={[styles.upperGotiPath, { marginRight: 8}]}>
             <GotiPath position={'right'} />
           </View>
         </View>
 
-        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <View style={styles.gotiHomeWrapper}>
             <GotiHome
               color="yellow"
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   gotiHomeWrapper: {
     width: 150,
     height: 150,
-    backgroundColor: "gray",
+    backgroundColor: "black",
     // borderRadius: 10,
     marginBottom: 1,
     shadowColor: "#000",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   upperGotiPath: {
-
+    
   },
   innerBoxRowOne: {
     flex: 1,
